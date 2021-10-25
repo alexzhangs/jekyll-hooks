@@ -1,3 +1,2 @@
-# jekyll-jpt-hook
-A Jekyll plugin to inject jekyll_picture_tag tags into content of post through hooks.
-
+# jekyll-hooks
+A Jekyll plugin to do find-and-replace in site content through hooks.
