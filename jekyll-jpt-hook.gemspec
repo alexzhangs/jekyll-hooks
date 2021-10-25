@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "lib/jekyll-jpt-hook/version"
-
 Gem::Specification.new do |spec|
   spec.name          = "jekyll-jpt-hook"
   spec.version       = "0.1.0"
