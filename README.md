@@ -6,8 +6,8 @@ But it's not gonna work with Github Pages, even at local.
 Github Pages locks down the `safe=true`, the `_plugins` folder won't work at all.
 
 With this plugin, for the local build, it works.
-For he remote build on Github Pages, of cause it doesn't by default.
-But with [jekyll-deploy-action](https://github.com/jeffreytse/jekyll-deploy-action) together, it works.
+For he remote build on Github Pages, of course it won't work by default.
+But with [jekyll-deploy-action](https://github.com/jeffreytse/jekyll-deploy-action) together, it will.
 
 ## Sample Configuration
 
