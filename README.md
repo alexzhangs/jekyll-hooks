@@ -19,7 +19,7 @@ hooks:
   actions:
     - type: posts
       exts: [markdown,mkdown,mkdn,mkd,md]
-      find: !ruby/regexp '!\[(.*)\]\((?!http[s]?:\/\/).+\)(?:{:([^}]+)})*'
+      find: !ruby/regexp '!\[(.*)\]\(((?!http[s]?:\/\/).+)\)(?:{:([^}]+)})*'
       replace: !ruby/regexp '{% picture \2 --alt \1 %}'
       case-insensitive: true
       disabled: false
