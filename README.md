@@ -18,9 +18,10 @@ But with [jekyll-deploy-action](https://github.com/jeffreytse/jekyll-deploy-acti
 hooks:
   actions:
     - type: posts
-      exts: [md]
-      find: !ruby/regexp '!\[(.*)\]\(([^\)]+)\)(?:{:([^}]+)})*'
+      exts: [markdown,mkdown,mkdn,mkd,md]
+      find: !ruby/regexp '!\[(.*)\]\((?!http[s]?:\/\/).+\)(?:{:([^}]+)})*'
       replace: !ruby/regexp '{% picture \2 --alt \1 %}'
+      case-insensitive: true
       disabled: false
   disabled: false
 ```
@@ -28,7 +29,7 @@ hooks:
 This configuration is turning the following markdown code:
 
 ```markdown
-[!A happy dog](/assets/images/a-happy-dog.png)
+![A happy dog](/assets/images/a-happy-dog.png)
 ```
 
 into a [jekyll_picture_tag]() tag format which is used to generate responsive images HTML code:

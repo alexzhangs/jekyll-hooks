@@ -7,6 +7,7 @@ Jekyll::Hooks.register :site, :pre_render do |site, payload|
       aExts = action['exts']
       aFind = action['find']
       aReplace = action['replace'] || ''
+      aCaseInsensitive = action['case-insensitive']
       aDisabled = action['disabled']
 
       if aDisabled
@@ -26,7 +27,12 @@ Jekyll::Hooks.register :site, :pre_render do |site, payload|
             next
           end
 
-          aFind = Regexp.new aFind
+          unless aCaseInsensitive
+            aFind = Regexp.new aFind
+          else
+            aFind = Regexp.new aFind, Regexp::IGNORECASE
+          end
+
           newContent = item.content.gsub(aFind, aReplace)
           item.content = newContent
         end
