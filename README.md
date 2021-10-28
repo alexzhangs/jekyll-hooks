@@ -19,8 +19,12 @@ hooks:
   actions:
     - type: posts
       exts: [markdown,mkdown,mkdn,mkd,md]
-      find: !ruby/regexp '!\[(.*)\]\(((?!http[s]?://).+)\)(?:{:([^}]+)})*'
-      replace: !ruby/regexp '{% picture \2 --alt \1 %}'
+      # ![alt](/path/to/image "title"){:.class}
+      find: >
+        !\[([^\]]*)\]\(((?!http[s]?://)[^"'\n]+)(?:\s['"]([^'"]*)['"])?\)(?:\{:\.([^{]+)\})?
+      # both present and non-present quotes matter
+      replace: >
+        {% picture \2 --alt \1 --img class="\4" title="\3" %}
       case-insensitive: true
       disabled: false
   disabled: false
@@ -29,11 +33,12 @@ hooks:
 This configuration is turning the following markdown code:
 
 ```markdown
-![A happy dog](/assets/images/a-happy-dog.png)
+![A happy dog](/assets/images/a-happy-dog.png "Leica iiif, Summaron 35mm/F3.5"){:.photo}
 ```
 
-into a [jekyll_picture_tag]() tag format which is used to generate responsive images HTML code:
+into a [jekyll_picture_tag](https://github.com/rbuchberger/jekyll_picture_tag)
+tag format which is used to generate responsive images HTML code:
 
 ```
-{% picture /assets/images/a-happy-dog.png --alt A happy dog %}
+{% picture /assets/images/a-happy-dog.png --alt A happy dog --img class="photo" title="Leica iiif, Summaron 35mm/F3.5" %}
 ```
